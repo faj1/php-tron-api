@@ -23,7 +23,7 @@
         "php": ">=8.0",
         "faj1/php-data-type": "dev-master",
         "guzzlehttp/guzzle": "^7.9.2",
-        "web3p/web3.php": "dev-master",
+        "faj1/web3.php": "dev-master",
         "kornrunner/secp256k1": "^0.2",
         "simplito/elliptic-php": "^1.0",
         "ext-json": "*",
