@@ -1,5 +1,5 @@
 {
-    "name": "faj1/tron-api-1",
+    "name": "faj1/php-tron-api",
     "description": "A PHP API for interacting with Tron (Trx)",
     "license": "MIT",
     "type":   "library",
