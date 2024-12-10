@@ -73,7 +73,7 @@ class TransactionBuilder
      * @param string $to
      * @param int $amount
      * @param string $tokenID
-     * @param string|null $from
+     * @param string $from
      * @return array
      * @throws TronException
      */
@@ -451,7 +451,7 @@ public function contractbalance($adres)
   }
 return $trc20;
 }
-    
+
     /**
      * Triggers smart contract
      *
