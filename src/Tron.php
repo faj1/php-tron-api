@@ -17,7 +17,7 @@ declare(strict_types=1);
 namespace IEXBase\TronAPI;
 
 use Elliptic\EC;
-use IEXBase\TronAPI\Exception\TRC20Exception;
+use Exception;
 use IEXBase\TronAPI\Support\Base58;
 use IEXBase\TronAPI\Support\Base58Check;
 use IEXBase\TronAPI\Support\Crypto;
@@ -102,13 +102,12 @@ class Tron implements TronInterface
     /**
      * Create a new Tron object
      *
-     * @param HttpProviderInterface $fullNode
-     * @param HttpProviderInterface $solidityNode
+     * @param HttpProviderInterface|null $fullNode
+     * @param HttpProviderInterface|null $solidityNode
      * @param HttpProviderInterface|null $eventServer
      * @param HttpProviderInterface|null $signServer
      * @param HttpProviderInterface|null $explorer
-     * @param string $privateKey
-
+     * @param string|null $privateKey
      * @throws TronException
      */
     public function __construct(?HttpProviderInterface $fullNode = null,
@@ -1379,11 +1378,37 @@ class Tron implements TronInterface
      */
     public function getTokenByID(string $token_id): array
     {
-        if(!is_string($token_id))
-            throw new TronException('Invalid token ID provided');
-
         return $this->manager->request('/wallet/getassetissuebyid', [
             'value' =>  $token_id
         ]);
     }
+
+
+    /**
+     * 通过私钥获取钱包地址
+     * @return string
+     * @throws Exception
+     */
+    public  function private_key_to_Address(): string
+    {
+        // TRON密钥
+        // 创建椭圆曲线对象
+        $ec = new EC('secp256k1');
+        // 从私钥派生公钥
+        $keyPair = $ec->keyFromPrivate($this->privateKey, 'hex');
+        $publicKey = $keyPair->getPublic('hex');
+        // 去除公钥前缀
+        $publicKey = substr($publicKey, 2);
+        // 计算公钥的Keccak-256哈希值
+        $hash = \kornrunner\Keccak::hash(hex2bin($publicKey), 256);
+        // 取最后20个字节（40个十六进制字符）
+        $address = substr($hash, -40);
+        // 添加TRON地址前缀
+        return '41' . $address;
+    }
+
+
+
+
+
 }
