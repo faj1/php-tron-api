@@ -282,6 +282,19 @@ class Utils
     }
 
 
+    /**
+     * 把TRX地址转换为ETH地址
+     * @param string $address
+     * @return array|string|string[]
+     * @throws Exception
+     */
+    public static function TrxAddress2EthAddress(string $address): array|string
+    {
+        $EthAddress = self::Tto41($address);
+        return substr_replace($EthAddress, '0x', 0, 2);
+    }
+
+
 
 
 
