@@ -3,7 +3,6 @@
     "description": "A PHP API for interacting with Tron (Trx)",
     "license": "MIT",
     "type":   "library",
-
     "homepage": "https://github.com/faj1/php-tron-api.git",
     "authors": [
         {
