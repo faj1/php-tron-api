@@ -195,7 +195,7 @@ class Utils
     {
         // 检查地址是否 T 开头
         if ($base58Address[0] !== 'T') {
-            throw new Exception('TRON地址必须以T开头');
+            return "";
         }
         // Base58 解码
         $decoded = self::base58_decode($base58Address);
@@ -218,7 +218,7 @@ class Utils
     {
         // 检查HEX地址是否合法
         if (!str_starts_with($hexAddress, '41') || strlen($hexAddress) !== 42) {
-            throw new Exception('HEX地址必须是41开头，长度为42的字符串');
+           return "";
         }
         // 转换HEX地址为二进制
         $payload = hex2bin($hexAddress);
