@@ -295,6 +295,24 @@ class Utils
     }
 
 
+    /**
+     * 传递一个字符串判断是否是Tron的地址 T 开头格式的
+     * @param string $Address
+     * @return bool
+     */
+    public static function IsTronAddress(string $Address): bool
+    {
+        try {
+            if(self::hexToT(self::Tto41($Address)) === $Address ){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (\Throwable $e){
+            return false;
+        }
+    }
+
 
 
 
