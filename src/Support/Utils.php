@@ -314,6 +314,11 @@ class Utils
     }
 
 
+    /**
+     * 判断字符串是否是ETH地址格式
+     * @param $Address
+     * @return bool
+     */
     public static  function isEthAddress($Address): bool
     {
         $Address = substr_replace($Address, '41', 0, 2);
