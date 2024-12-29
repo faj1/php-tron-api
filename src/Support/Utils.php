@@ -314,6 +314,19 @@ class Utils
     }
 
 
+    public static  function isEthAddress($Address): bool
+    {
+        $Address = substr_replace($Address, '41', 0, 2);
+        try {
+            $Address = self::hexToT($Address);
+            self::IsTronAddress($Address);
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+
 
 
 
