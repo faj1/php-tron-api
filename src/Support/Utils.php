@@ -324,11 +324,10 @@ class Utils
         $Address = substr_replace($Address, '41', 0, 2);
         try {
             $Address = self::hexToT($Address);
-            self::IsTronAddress($Address);
+            return self::IsTronAddress($Address);
         } catch (Exception $e) {
             return false;
         }
-        return true;
     }
 
 
